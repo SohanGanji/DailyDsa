@@ -1,0 +1,9 @@
+# Compiled executables and binary files
+*.exe
+*.o
+*.obj
+
+# Editor and system files
+.vscode/
+.DS_Store
+Thumbs.db
