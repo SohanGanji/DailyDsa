@@ -33,6 +33,10 @@ void insertionsort(int a[],int n){
   }
 }
 
+void mergesort(int a[],int n){
+  
+}
+
 int main() {
   int n;
   cin >> n;
@@ -41,7 +45,7 @@ int main() {
     cin >> a[i];
   }
 
-  insertionsort(a, n);
+  mergesort(a, n);
 
   for (int i = 0; i < n; i++) {
     cout << a[i] << " ";
