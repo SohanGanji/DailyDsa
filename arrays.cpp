@@ -40,7 +40,6 @@ void ssmall(int a[], int n) {
   cout << smin << endl;
 }
 
-// Optimal O(N) Two Pointer Approach for Remove Duplicates
 void remdup(vector<int> &a, int n) {
   if (n == 0)
     return;
@@ -56,6 +55,22 @@ void remdup(vector<int> &a, int n) {
   cout << i + 1 << endl;
 }
 
+// Attempt: left rotate by d using recursion with base case (i == d) and index n
+void reverse_attempt(vector<int> &a, int i, int d) {
+  if (i == d) // Error: misses crossing on even length ranges
+    return;
+
+  swap(a[i], a[d]);
+  reverse_attempt(a, i + 1, d - 1);
+}
+
+void leftr_attempt(vector<int> &a, int n, int d) {
+  d = d % n;
+  reverse_attempt(a, 0, d); // Error: should be d - 1
+  reverse_attempt(a, d, n); // Error: should be n - 1
+  reverse_attempt(a, 0, n); // Error: a[n] out of bounds
+}
+
 int main() {
   int n;
   cin >> n;
@@ -63,6 +78,8 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  remdup(a, n);
+  int d;
+  cin >> d;
+  leftr_attempt(a, n, d);
   return 0;
 }
