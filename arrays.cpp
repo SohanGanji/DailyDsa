@@ -40,17 +40,20 @@ void ssmall(int a[], int n) {
   cout << smin << endl;
 }
 
-// Attempt: remove duplicates using vector.erase (causes out-of-bounds on shrunk vector)
-void remdup_attempt(vector<int> &a, int n) {
-  for (int i = 0; i < n; i++) {
-    if (a[i] == a[i + 1]) {
-      a.erase(a.begin() + i + 1);
+// Optimal O(N) Two Pointer Approach for Remove Duplicates
+void remdup(vector<int> &a, int n) {
+  if (n == 0)
+    return;
+
+  int i = 0;
+  for (int j = 1; j < n; j++) {
+    if (a[j] != a[i]) {
+      i++;
+      a[i] = a[j];
     }
   }
-  for (int x : a) {
-    cout << x << " ";
-  }
-  cout << endl;
+
+  cout << i + 1 << endl;
 }
 
 int main() {
@@ -60,6 +63,6 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  remdup_attempt(a, n);
+  remdup(a, n);
   return 0;
 }
