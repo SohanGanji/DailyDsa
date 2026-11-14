@@ -40,14 +40,26 @@ void ssmall(int a[], int n) {
   cout << smin << endl;
 }
 
+// Attempt: remove duplicates using vector.erase (causes out-of-bounds on shrunk vector)
+void remdup_attempt(vector<int> &a, int n) {
+  for (int i = 0; i < n; i++) {
+    if (a[i] == a[i + 1]) {
+      a.erase(a.begin() + i + 1);
+    }
+  }
+  for (int x : a) {
+    cout << x << " ";
+  }
+  cout << endl;
+}
+
 int main() {
   int n;
   cin >> n;
-  int a[n];
+  vector<int> a(n);
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  slarge(a, n);
-  ssmall(a, n);
+  remdup_attempt(a, n);
   return 0;
 }
