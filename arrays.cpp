@@ -12,29 +12,32 @@ void largest(int a[], int n) {
   cout << a[max] << endl;
 }
 
-// Attempt: mixing index with values and missing else-if branch
-void slarge_attempt(int a[], int n) {
+void slarge(int a[], int n) {
   int max = a[0];
   int smax = INT_MIN;
-  for (int i = 1; i < n; i++) {
-    if (a[i] > a[max]) { // Error: max holds value but used as index
+  for (int i = 0; i < n; i++) {
+    if (a[i] > max) {
       smax = max;
-      max = i;
+      max = a[i];
+    } else if (a[i] > smax && a[i] < max) {
+      smax = a[i];
     }
   }
-  cout << a[smax] << endl;
+  cout << smax << endl;
 }
 
-void ssmall_attempt(int a[], int n) {
+void ssmall(int a[], int n) {
   int min = a[0];
   int smin = INT_MAX;
   for (int i = 0; i < n; i++) {
-    if (min > a[i]) {
+    if (a[i] < min) {
       smin = min;
-      min = i;
+      min = a[i];
+    } else if (a[i] < smin && a[i] > min) {
+      smin = a[i];
     }
   }
-  cout << a[smin] << endl;
+  cout << smin << endl;
 }
 
 int main() {
@@ -44,7 +47,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  slarge_attempt(a, n);
-  ssmall_attempt(a, n);
+  slarge(a, n);
+  ssmall(a, n);
   return 0;
 }
